@@ -27,7 +27,7 @@ PULL_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
 autolabel() {
   # Example: https://docs.github.com/en/rest/pulls/pulls?apiVersion=2022-11-28#get-a-pull-request
   # https://api.github.com/repos/CodelyTV/pr-size-labeler/pulls/57
-  body=$(curl -sSL -H "${API_HEADER}" -H "${AUTH_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/pulls/${PULL_NUMBER}")
+  body=$(curl -sSL -H "$API_VERSION" -H "${API_HEADER}" -H "${AUTH_HEADER}" "${URI}/repos/${GITHUB_REPOSITORY}/pulls/${PULL_NUMBER}")
 
   additions=$(echo "$body" | jq '.additions')
   deletions=$(echo "$body" | jq '.deletions')
@@ -37,12 +37,13 @@ autolabel() {
   echo "Labeling pull request with $label_to_add"
 
   curl -sSL \
+    -X PATCH \
+    -H "${API_VERSION}" \
     -H "${API_HEADER}" \
     -H "${AUTH_HEADER}" \
-    -X POST \
     -H "Content-Type: application/json" \
-    -d "{\"labels\":[\"${label_to_add}\"]}" \
-    "${URI}/repos/${GITHUB_REPOSITORY}/pulls/${PULL_NUMBER}"
+    "${URI}/repos/${GITHUB_REPOSITORY}/pulls/${PULL_NUMBER}" \
+    -d "{\"labels\": [\"${label_to_add}\"]}"
 }
 
 label_for() {
