@@ -46,13 +46,13 @@ autolabel() {
 }
 
 label_for() { 
-  if [ "$1" -lt 10]; then
+  if [ "$1" -lt 10 ]; then
     label="size/xs"
-  elif [ "$1" -lt 100]; then 
+  elif [ "$1" -lt 100 ]; then 
     label="size/s"
-  elif [ "$1" -lt 500]; then 
+  elif [ "$1" -lt 500 ]; then 
     label="size/m"
-  elif [ "$1" -lt 1000]; then 
+  elif [ "$1" -lt 1000 ]; then 
     label="size/l"
   else
     label="size/xl" 
