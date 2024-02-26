@@ -2,12 +2,12 @@
 
 set -e 
 
-if [[-z "$GITHUB_REPOSITORY"]]; then 
+if [[ -z "$GITHUB_REPOSITORY" ]]; then 
   echo "The env variable GITHUB_REPOSITORY is required"
   exit 1
 fi
 
-if [[-z "$GITHUB_EVENT_PATH"]]; then 
+if [[ -z "$GITHUB_EVENT_PATH" ]]; then 
   echo "The env variable GITHUB_EVENT_PATH is required"
   exit 1
 fi 
