@@ -1,16 +1,16 @@
-#!/bin/bash 
+#!/bin/bash
 
-set -e 
+set -e
 
-if [[ -z "$GITHUB_REPOSITORY" ]]; then 
+if [[ -z "$GITHUB_REPOSITORY" ]]; then
   echo "The env variable GITHUB_REPOSITORY is required"
   exit 1
 fi
 
-if [[ -z "$GITHUB_EVENT_PATH" ]]; then 
+if [[ -z "$GITHUB_EVENT_PATH" ]]; then
   echo "The env variable GITHUB_EVENT_PATH is required"
   exit 1
-fi 
+fi
 
 GITHUB_TOKEN="$1"
 
@@ -45,22 +45,20 @@ autolabel() {
     "${URI}/repos/${GITHUB_REPOSITORY}/pulls/${PULL_NUMBER}"
 }
 
-label_for() { 
-  if [ "$1" -lt 10 ]; then
+label_for() {
+  if (("$1" < 10)); then
     label="size/xs"
-  elif [ "$1" -lt 100 ]; then 
+  elif (("$1" < 100)); then
     label="size/s"
-  elif [ "$1" -lt 500 ]; then 
+  elif (("$1" < 500)); then
     label="size/m"
-  elif [ "$1" -lt 1000 ]; then 
+  elif (("$1" < 1000)); then
     label="size/l"
   else
-    label="size/xl" 
+    label="size/xl"
   fi
 
   echo "$label"
 }
 
-
 autolabel
-
