@@ -5,7 +5,7 @@ inputs:
     description: 'GitHub Token'
     required: true
 runs:
-  using: docker
-  image: Dockerfile
+  using: 'docker'
+  image: 'Dockerfile'
   args:
-    - ${{inputs.GITHUB_TOKEN}}
+    - ${{ inputs.GITHUB_TOKEN }}
