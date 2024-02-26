@@ -36,7 +36,7 @@ autolabel() {
 
   echo "Labeling pull request with $label_to_add"
 
-  curl -sSL \
+  curl -L \
     -X PATCH \
     -H "${API_VERSION}" \
     -H "${API_HEADER}" \
