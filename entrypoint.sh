@@ -43,7 +43,7 @@ autolabel() {
     -H "${AUTH_HEADER}" \
     -H "Content-Type: application/json" \
     "${URI}/repos/${GITHUB_REPOSITORY}/pulls/${PULL_NUMBER}" \
-    -d "{\"labels\": [\"${label_to_add}\"]}"
+    -d '{"title":"new title"}'
 }
 
 label_for() {
